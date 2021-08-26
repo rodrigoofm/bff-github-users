@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { checkServerIdentity } from 'tls';
 import { GithubApiHttpClient } from './github-api-http-client';
 import { GithubApiService } from './github-api.service';
 
