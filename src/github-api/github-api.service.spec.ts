@@ -3,7 +3,7 @@ import { GithubApiHttpClient } from './github-api-http-client';
 import { GithubApiService } from './github-api.service';
 
 describe('GithubApiService', () => {
-  let service: GithubApiService;
+  let githubApiService: GithubApiService;
 
   const githubHttpClientMock = {
     findByUsername: (username: string) => Promise.resolve({ login: username }),
@@ -17,16 +17,16 @@ describe('GithubApiService', () => {
       .useValue(githubHttpClientMock)
       .compile();
 
-    service = module.get<GithubApiService>(GithubApiService);
+    githubApiService = module.get<GithubApiService>(GithubApiService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(githubApiService).toBeDefined();
   });
 
   it('should get user by username', async () => {
     const username = 'rodrigo';
-    const user = await service.findByUsername(username);
+    const user = await githubApiService.findByUsername(username);
     expect(user).toBeDefined();
     expect(user.login).toBe(username);
   });

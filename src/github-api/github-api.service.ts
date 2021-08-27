@@ -9,7 +9,3 @@ export class GithubApiService {
     return this.githubApiHttpClient.findByUsername(username);
   }
 }
-
-// Provider precisa gerar o arq de test ?
-// como abstrair ?
-// validação do status code fazer na service ?
