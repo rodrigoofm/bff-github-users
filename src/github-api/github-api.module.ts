@@ -8,5 +8,6 @@ import { GithubApiHttpClient } from './github-api-http-client';
   imports: [HttpModule],
   providers: [GithubApiService, GithubApiHttpClient],
   controllers: [GithubApiController],
+  exports: [GithubApiService, GithubApiHttpClient],
 })
 export class GithubApiModule {}
