@@ -9,4 +9,9 @@ export class GithubApiController {
   finByUsername(@Param('username') username: string) {
     return this.githubService.findByUsername(username);
   }
+
+  @Get(':username/repos')
+  findRepository(@Param('username') username: string) {
+    return this.githubService.findRepository(username);
+  }
 }

@@ -8,4 +8,9 @@ export class GithubApiService {
   findByUsername(username: string) {
     return this.githubApiHttpClient.findByUsername(username);
   }
+
+  async findRepository(username: string) {
+    const repo = await this.githubApiHttpClient.findRepository(username);
+    return repo;
+  }
 }

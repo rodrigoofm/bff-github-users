@@ -28,4 +28,24 @@ export class GithubApiHttpClient {
       throw new HttpException(error.statusText, error.status);
     }
   }
+
+  async findRepository(username: string) {
+    const url = `${process.env.API_GITHUB_URL}/users/${username}/repos`;
+    const [data] = await lastValueFrom(this.httpService.get(url));
+    const dataRepos = [
+      {
+        id: data.id,
+        node_id: data.node_id,
+        name: data.name,
+        full_name: data.full_name,
+        description: data.description,
+        html_url: data.html_url,
+      },
+    ];
+
+    // console.log(data);
+    console.log(dataRepos);
+
+    return dataRepos;
+  }
 }
