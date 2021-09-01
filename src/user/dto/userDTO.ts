@@ -3,29 +3,29 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class UserDTO {
   @Field({ nullable: true })
-  login: string;
+  login?: string;
 
   @Field({ nullable: true })
-  id: string;
+  id?: string;
 
   @Field({ nullable: true })
-  node_id: string;
+  node_id?: string;
 
   @Field({ nullable: true })
-  name: string;
+  name?: string;
 
   @Field({ nullable: true })
-  html_url: string;
+  html_url?: string;
 
   @Field({ nullable: true })
-  repos_url: string;
+  repos_url?: string;
 
   @Field({ nullable: true })
-  updated_at: string;
+  updated_at?: string;
 
   @Field({ nullable: true })
-  created_at: string;
+  created_at?: string;
 
   @Field({ nullable: true })
-  email: string;
+  email?: string;
 }

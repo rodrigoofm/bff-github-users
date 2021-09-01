@@ -11,12 +11,12 @@ export class UserService {
 
   async findUsernameMongo(username: string) {
     const userMongo = await this.userRepository.findByUsername(username);
-    const userGit = await this.githubApiService.findByUsername(username);
 
     if (userMongo != null) {
       return userMongo;
     }
 
+    const userGit = await this.githubApiService.findByUsername(username);
     return await this.userRepository.create(userGit);
   }
 }
