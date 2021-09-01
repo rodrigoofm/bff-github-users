@@ -8,6 +8,7 @@ describe('UserService', () => {
 
   const userRepositoryMock = {
     findByUsername: (username: string) => Promise.resolve({ login: username }),
+    create: (user: any) => Promise.resolve(user),
   };
 
   const githubApiMock = {
@@ -31,9 +32,21 @@ describe('UserService', () => {
     expect(userService).toBeDefined();
   });
 
-  it('shoul get user by username', async () => {
+  it('should get user by username', async () => {
     const username = 'rodrigoofm';
     const user = await userService.findUsernameMongo(username);
+    expect(user).toBeDefined();
+    expect(user.login).toBe(username);
+  });
+
+  it('should get user from github-api', async () => {
+    jest
+      .spyOn(userRepositoryMock, 'findByUsername')
+      .mockResolvedValueOnce(null);
+
+    const username = 'rodrigoofm';
+    const user = await userService.findUsernameMongo(username);
+
     expect(user).toBeDefined();
     expect(user.login).toBe(username);
   });
