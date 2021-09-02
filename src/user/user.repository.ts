@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RepositoryDTO } from './dto/repositoryDTO';
-import { Repository } from './model/repository';
 import { User } from './model/user';
 
+import { RepositoryDTO } from './dto/repositoryDTO';
+import { Repository } from './model/repository';
 @Injectable()
 export class UserRepository {
   constructor(
-    @InjectModel('User') private readonly userModel: Model<User>,
+    @InjectModel('User')
+    private readonly userModel: Model<User>,
     @InjectModel('Repository')
     private readonly repositoryModel: Model<Repository>,
   ) {}
@@ -23,11 +24,11 @@ export class UserRepository {
     return await this.userModel.findOne({ login: username }).exec();
   }
 
-  async findRepository(username: string): Promise<Repository[]> {
+  async findRepos(username: string): Promise<Repository[]> {
     return await this.repositoryModel.find({ login: username }).exec();
   }
 
-  async createRepository(repo: RepositoryDTO) {
+  async createRepos(repo: RepositoryDTO) {
     return await this.repositoryModel.insertMany(repo);
   }
 }

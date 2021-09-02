@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type RepositoryDTO {
+  id: String
+  node_id: String
+  name: String
+  full_name: String
+  html_url: String
+}
+
 type UserDTO {
   login: String
   id: String
@@ -12,6 +20,7 @@ type UserDTO {
   updated_at: String
   created_at: String
   email: String
+  repository: [RepositoryDTO!]!
 }
 
 type Query {

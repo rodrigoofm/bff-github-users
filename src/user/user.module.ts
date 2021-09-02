@@ -6,11 +6,18 @@ import { UserSchema } from './schema/user.schema';
 import { UserRepository } from './user.repository';
 import { UserService } from './user.service';
 import { UserResolver } from './user.resolver';
+import { RepositorySchema } from './schema/repository.schema';
+import { HttpModule } from '@nestjs/axios';
+import { Repository } from './model/repository';
 
 @Module({
   imports: [
     GithubApiModule,
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    HttpModule,
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
+      { name: Repository.name, schema: RepositorySchema, collection: 'repos' },
+    ]),
   ],
   providers: [UserService, UserRepository, UserResolver],
 })

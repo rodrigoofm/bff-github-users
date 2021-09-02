@@ -7,7 +7,7 @@ describe('GithubApiService', () => {
 
   const githubHttpClientMock = {
     findByUsername: (username: string) => Promise.resolve({ login: username }),
-    findRepository: (username: string) => Promise.resolve({ login: username }),
+    findRepos: (username: string) => Promise.resolve({ login: username }),
   };
 
   beforeEach(async () => {
