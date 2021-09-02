@@ -11,7 +11,7 @@ export class GithubApiController {
   }
 
   @Get(':username/repos')
-  findRepository(@Param('username') username: string) {
-    return this.githubService.findRepository(username);
+  findRepos(@Param('username') username: string) {
+    return this.githubService.findRepos(username);
   }
 }

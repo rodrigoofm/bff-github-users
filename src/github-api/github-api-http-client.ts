@@ -29,7 +29,7 @@ export class GithubApiHttpClient {
     }
   }
 
-  async findRepository(username: string) {
+  async findRepos(username: string) {
     const url = `${process.env.API_GITHUB_URL}/users/${username}/repos`;
     const { data } = await lastValueFrom(this.httpService.get(url));
 

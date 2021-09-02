@@ -9,7 +9,7 @@ export class GithubApiService {
     return this.githubApiHttpClient.findByUsername(username);
   }
 
-  async findRepository(username: string) {
-    return await this.githubApiHttpClient.findRepository(username);
+  async findRepos(username: string) {
+    return await this.githubApiHttpClient.findRepos(username);
   }
 }
