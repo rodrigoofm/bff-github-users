@@ -7,6 +7,7 @@ describe('GithubApiService', () => {
 
   const githubHttpClientMock = {
     findByUsername: (username: string) => Promise.resolve({ login: username }),
+    findRepository: (username: string) => Promise.resolve({ login: username }),
   };
 
   beforeEach(async () => {
@@ -27,6 +28,13 @@ describe('GithubApiService', () => {
   it('should get user by username', async () => {
     const username = 'rodrigo';
     const user = await githubApiService.findByUsername(username);
+    expect(user).toBeDefined();
+    expect(user.login).toBe(username);
+  });
+
+  it('should get repository by username', async () => {
+    const username = 'rodrigo';
+    const user = await githubApiService.findRepos(username);
     expect(user).toBeDefined();
     expect(user.login).toBe(username);
   });
