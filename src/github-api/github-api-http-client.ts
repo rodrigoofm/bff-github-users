@@ -28,4 +28,17 @@ export class GithubApiHttpClient {
       throw new HttpException(error.statusText, error.status);
     }
   }
+
+  async findRepos(username: string) {
+    const url = `${process.env.API_GITHUB_URL}/users/${username}/repos`;
+    const { data } = await lastValueFrom(this.httpService.get(url));
+
+    return data.map(
+      ({ id, node_id, name, full_name, html_url, owner: { login } }) => {
+        const dataRepos = { id, node_id, name, full_name, html_url, login };
+
+        return dataRepos;
+      },
+    );
+  }
 }
