@@ -10,12 +10,13 @@ describe('UserService', () => {
   const userRepositoryMock = {
     findByUsername: (username: string) => Promise.resolve({ login: username }),
     create: (user: any) => Promise.resolve(user),
-    findRepos: (username: string) => Promise.resolve([username]),
+    findRepos: (username: string) => Promise.resolve([{ login: username }]),
     createRepos: (repo: RepositoryDTO) => Promise.resolve(repo),
   };
 
   const githubApiMock = {
     findByUsername: (username: string) => Promise.resolve({ login: username }),
+    findRepos: (username: string) => Promise.resolve([{ login: username }]),
   };
 
   beforeEach(async () => {
@@ -54,23 +55,20 @@ describe('UserService', () => {
     expect(user.login).toBe(username);
   });
 
-  it('should get repos by usernmae', async () => {
+  it('should get repos from mongo by username', async () => {
     const username = 'rodrigoofm';
-    const user = await userService.findRepos(username);
-    expect(user).toBeDefined();
-    expect(user[0].username).toBe(username);
+    const repos = await userService.findRepos(username);
+    expect(repos).toBeDefined();
+    expect(repos[0].login).toBe(username);
   });
 
   it('shoul get repos from github-api', async () => {
-    jest.spyOn(userRepositoryMock, 'findRepos').mockImplementationOnce(() => {
-      const repoMongo = [];
-      return Promise.resolve(repoMongo);
-    });
+    jest.spyOn(userRepositoryMock, 'findRepos').mockResolvedValueOnce([]);
 
     const username = 'rodrigoofm';
-    const user = await userService.findRepos(username);
+    const repos = await userService.findRepos(username);
 
-    expect(user).toBeDefined();
-    expect(user[0].username).toBe(username);
+    expect(repos).toBeDefined();
+    expect(repos[0].login).toBe(username);
   });
 });

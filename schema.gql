@@ -20,7 +20,7 @@ type UserDTO {
   updated_at: String
   created_at: String
   email: String
-  repository: [RepositoryDTO!]!
+  repos: [RepositoryDTO!]!
 }
 
 type Query {

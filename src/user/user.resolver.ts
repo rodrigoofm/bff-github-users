@@ -12,7 +12,7 @@ export class UserResolver {
     return this.userService.findUsernameMongo(username);
   }
 
-  @ResolveField('repository', () => [RepositoryDTO])
+  @ResolveField('repos', () => [RepositoryDTO])
   async getRepos(@Parent() user: UserDTO) {
     const { login } = user;
     return this.userService.findRepos(login);
