@@ -34,8 +34,8 @@ describe('GithubApiService', () => {
 
   it('should get repository by username', async () => {
     const username = 'rodrigo';
-    const user = await githubApiService.findRepos(username);
-    expect(user).toBeDefined();
-    expect(user.login).toBe(username);
+    const repos = await githubApiService.findRepos(username);
+    expect(repos).toBeDefined();
+    expect(repos[0].login).toBe(username);
   });
 });
