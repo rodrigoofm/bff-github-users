@@ -28,7 +28,7 @@ export class UserRepository {
     return await this.repositoryModel.find({ login: username }).exec();
   }
 
-  async createRepos(repo: RepositoryDTO) {
+  async createRepos(repo: RepositoryDTO[]) {
     return await this.repositoryModel.insertMany(repo);
   }
 }
