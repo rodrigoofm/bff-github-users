@@ -1,4 +1,5 @@
-import { Args, Resolver, Query } from '@nestjs/graphql';
+import { Args, Resolver, Query, ResolveField, Parent } from '@nestjs/graphql';
+import { RepositoryDTO } from './dto/repositoryDTO';
 import { UserDTO } from './dto/userDTO';
 import { UserService } from './user.service';
 
@@ -9,5 +10,11 @@ export class UserResolver {
   @Query(() => UserDTO)
   async findByUsername(@Args('username') username: string) {
     return this.userService.findUsernameMongo(username);
+  }
+
+  @ResolveField('repos', () => [RepositoryDTO])
+  async getRepos(@Parent() user: UserDTO) {
+    const { login } = user;
+    return this.userService.findRepos(login);
   }
 }

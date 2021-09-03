@@ -19,4 +19,15 @@ export class UserService {
     const userGit = await this.githubApiService.findByUsername(username);
     return await this.userRepository.create(userGit);
   }
+
+  async findRepos(username: string) {
+    const repoMongo = await this.userRepository.findRepos(username);
+
+    if (repoMongo.length > 0) {
+      return repoMongo;
+    }
+
+    const repoGit = await this.githubApiService.findRepos(username);
+    return await this.userRepository.createRepos(repoGit);
+  }
 }
